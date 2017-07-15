@@ -16,6 +16,12 @@
       </form>
     </div>
     <div>
+      <ul>
+        <% topPopular.results.forEach(function(item) { %>
+          <li> <%= item.title %> </li>
+        <% }); %>
+      </ul>
     </div>
   </body>
 </html>
+ 

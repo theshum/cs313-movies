@@ -28,6 +28,8 @@ tmdb.person.info(109, (err ,res) => {
 
 var app = express();
 
+app.locals.topPopular;
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
