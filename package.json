@@ -13,6 +13,7 @@
     "express": "~4.15.2",
     "morgan": "^1.8.2",
     "serve-favicon": "^2.4.3",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "tmdbv3": "^0.1.2"
   }
 }
