@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/top', index);
+app.use('/search', index);
 app.use('/users', users);
 
 

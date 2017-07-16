@@ -13,9 +13,17 @@
         <label for='search'>Search</label>
         <input type='text' id='search'>
         <input type='submit' value='submit'>
+        <input type='button' onClick='location.href="/top"' value="get Top Movies">
+        <input type='button' onClick='location.href="/"' value='goHome'>
       </form>
+
     </div>
     <div>
+      <ul>
+        <% searchResults.results.forEach(function(item) { %>
+          <li> <%= item.title %> </li>
+        <% }); %>
+      </ul>
     </div>
   </body>
 </html>
