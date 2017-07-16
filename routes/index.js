@@ -5,14 +5,12 @@ var bodyParser = require('body-parser');
 
 var jsonParcer = bodyParser.json();
 
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/test', jsonParcer, function(req, res, next){
+router.get('/top', jsonParcer, function(req, res, next){
   console.log('inside /test route');
   var data;
   var options = { method: 'GET',
@@ -31,7 +29,7 @@ router.get('/test', jsonParcer, function(req, res, next){
 
     //console.log(body);
     var json = JSON.parse(body); 
-    topPopular = json;
+    searchResults = json;
 
 /*     topPopular.results.forEach(function(index){
       console.log("title " + index.title);
@@ -39,7 +37,33 @@ router.get('/test', jsonParcer, function(req, res, next){
     }) */
     //console.log(topPopular.results);
   });
-  res.render('test', { title: 'Movies' });
+  res.render('top', { title: 'Movies' });
 });
+
+
+router.get('/search', jsonParcer, function(req, res, next){
+  console.log('inside /search route');
+
+  /* search */
+    var options = { method: 'GET',
+      url: 'https://api.themoviedb.org/3/search/movie',
+      qs: 
+      { include_adult: 'false',
+        page: '1',
+        query: 'indiana jones',
+        language: 'en-US',
+        api_key: 'f3440b43f00ffcf48f98630447fa13d9' },
+      body: '{}' };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+      
+      json = JSON.parse(body);
+      searchResults = json;
+      //console.log(body);
+    });
+  res.render('top', { title: 'Movies' });
+});
+
 
 module.exports = router;

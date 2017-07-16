@@ -8,27 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-/* //used for the tmdb movie api
-var key = 'f3440b43f00ffcf48f98630447fa13d9'
-
-const tmdb = require('tmdbv3').init(key);
-
-tmdb.misc.latest((err ,res) => {
-	console.log(res.title);
-});
-
-tmdb.movie.info(5, (err ,res) => {
-	console.log(res.title);	
-});
-
-tmdb.person.info(109, (err ,res) => {
-	console.log(res.name);	
-}); */
-
-
 var app = express();
 
-app.locals.topPopular;
+app.locals.searchResults;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/test', index);
+app.use('/top', index);
 app.use('/users', users);
 
 
