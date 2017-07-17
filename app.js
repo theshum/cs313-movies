@@ -10,8 +10,6 @@ var users = require('./routes/users');
 
 var app = express();
 
-app.locals.searchResults;
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -29,6 +27,7 @@ app.use('/top', index);
 app.use('/search', index);
 app.use('/users', users);
 
+app.locals.searchResults;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

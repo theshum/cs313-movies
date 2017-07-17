@@ -1,11 +1,6 @@
 {
   "name": "movie",
   "version": "0.0.0",
-  "eslintConfig": {
-    "env": {
-        "browser": true,
-        "node": true
-    },
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
