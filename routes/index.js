@@ -37,7 +37,7 @@ router.get('/top', jsonParcer, function(req, res, next){
     }) */
     //console.log(topPopular.results);
   });
-  res.render('index', { title: 'Movies' });
+  res.render('top', { title: 'Movies' });
 });
 
 
@@ -62,7 +62,7 @@ router.get('/search', jsonParcer, function(req, res, next){
       searchResults = json;
       //console.log(body);
     });
-  res.render('index', { title: 'Movies' });
+  res.render('top', { title: 'Movies' });
 });
 
 
