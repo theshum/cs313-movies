@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require("request");
 var bodyParser = require('body-parser');
+var url = require('url');
 
 var jsonParcer = bodyParser.json();
 
@@ -41,8 +42,13 @@ router.get('/top', jsonParcer, function(req, res, next){
 });
 
 
-router.get('/search', jsonParcer, function(req, res, next){
+router.get('/search', function(req, res, next){
   console.log('inside /search route');
+
+  var requestURL = url.parse(req.url, true);
+  var searchTerm = String(requestURL.query.search);
+
+  console.log('searchTerm: ' + searchTerm);
 
   /* search */
     var options = { method: 'GET',
@@ -50,20 +56,33 @@ router.get('/search', jsonParcer, function(req, res, next){
       qs: 
       { include_adult: 'false',
         page: '1',
-        query: 'indiana jones',
+        query: searchTerm,
         language: 'en-US',
         api_key: 'f3440b43f00ffcf48f98630447fa13d9' },
       body: '{}' };
 
-    request(options, function (error, response, body) {
+    searchRequest(options, res, runSearch)
+    console.log('return to get function');
+
+});
+
+function runSearch(res) {
+    console.log('runSearch callback complete');
+    res.render('top', { title: 'Movies' });
+}
+
+function searchRequest(options, res, callback) {
+  request(options, function (error, response, body) {
       if (error) throw new Error(error);
       
       json = JSON.parse(body);
       searchResults = json;
       //console.log(body);
+      console.log('search request complete');
+      console.log('searchResults: ' + JSON.stringify(searchResults));
+      callback(res);
     });
-  res.render('top', { title: 'Movies' });
-});
-
+};
+    
 
 module.exports = router;
