@@ -52,7 +52,7 @@ router.get('/search', function(req, res, next){
 });
 
 function runSearch(res) {
-    console.log('runSearch callback complete');
+    //console.log('runSearch callback complete');
     res.render('top', { title: 'Movies' });
 }
 
