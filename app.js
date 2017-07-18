@@ -29,6 +29,8 @@ app.use('/search', index);
 app.use('/users', users);
 
 app.locals.searchResults;
+app.locals.data = [];
+app.locals.labels = [];
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

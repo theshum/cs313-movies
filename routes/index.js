@@ -67,6 +67,15 @@ function searchRequest(options, res, callback) {
         //console.log('our error was "captured"');
         searchResults = "empty";
         //console.log(JSON.stringify(searchResults));
+      } else {
+        data = [];
+        labels = [];
+          searchResults.results.forEach(function(item){
+            data.push(item.vote_count);
+            labels.push(item.title);
+          }); 
+          console.log("data " + data[0]);
+          console.log("labels " + labels[0]);
       }
 
       //console.log(body);
