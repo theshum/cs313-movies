@@ -14,11 +14,17 @@
       <% include ./partials/form.ejs %>
     </div>
     <div>
-      <ul>
-        <% searchResults.results.forEach(function(item) { %>
-          <li> <%= item.title %> </li>
-        <% }); %>
-      </ul>
+        <% if(searchResults === "empty") { 
+          console.log("we have empty results"); %>
+          <h2>Search did not return any results, please try again</h2>
+        <% } else {
+          console.log("so we made it to the else"); %>
+          <ul>
+          <% searchResults.results.forEach(function(item) { %>
+            <li> <%= item.title %> </li>
+          <% }); %>
+          </ul>
+        <% }; %>
     </div>
   </body>
 </html>
