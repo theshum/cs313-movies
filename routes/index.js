@@ -4,8 +4,6 @@ var request = require("request");
 var bodyParser = require('body-parser');
 var url = require('url');
 
-//var jsonParcer = bodyParser.json();
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -26,21 +24,7 @@ router.get('/top', function(req, res, next){
     body: '{}' };
 
     searchRequest(options, res, runSearch)
-  /* request(options, function (error, res, body) {
-    if (error) throw new Error(error);
-
-    //console.log(body);
-    var json = JSON.parse(body); 
-    searchResults = json;
-
-/*     topPopular.results.forEach(function(index){
-      console.log("title " + index.title);
-      console.log("title " + index.vote_count);
-    }) */
-    //console.log(topPopular.results);
-  /* });
-  res.render('top', { title: 'Movies' }); */ 
-});
+  });
 
 
 router.get('/search', function(req, res, next){
@@ -49,7 +33,7 @@ router.get('/search', function(req, res, next){
   var requestURL = url.parse(req.url, true);
   var searchTerm = String(requestURL.query.search);
 
-  console.log('searchTerm: ' + searchTerm);
+  //console.log('searchTerm: ' + searchTerm);
 
   /* search */
     var options = { method: 'GET',
@@ -63,7 +47,7 @@ router.get('/search', function(req, res, next){
       body: '{}' };
 
     searchRequest(options, res, runSearch)
-    console.log('return to get function');
+    //console.log('return to get function');
 
 });
 
@@ -75,18 +59,19 @@ function runSearch(res) {
 function searchRequest(options, res, callback) {
   request(options, function (error, response, body) {
       if (error) throw new Error(error);
-      console.log('body contents ' + JSON.stringify(body));
+      //console.log('body contents ' + JSON.stringify(body));
       json = JSON.parse(body);
       searchResults = json;
+      
       if(searchResults.errors == 'query must be provided') {
-        console.log('our error was "captured"');
+        //console.log('our error was "captured"');
         searchResults = "empty";
-        console.log(JSON.stringify(searchResults));
+        //console.log(JSON.stringify(searchResults));
       }
 
       //console.log(body);
-      console.log('search request complete');
-      console.log('searchResults: ' + JSON.stringify(searchResults));
+      //console.log('search request complete');
+      //console.log('searchResults: ' + JSON.stringify(searchResults));
       callback(res);
     });
 };

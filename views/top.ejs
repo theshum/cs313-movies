@@ -21,7 +21,7 @@
           console.log("so we made it to the else"); %>
           <ul>
           <% searchResults.results.forEach(function(item) { %>
-            <li> <%= item.title %> </li>
+            <li> <%= item.title %> - <span style:"color:red"> <%= item.vote_count %> </span></li>
           <% }); %>
           </ul>
         <% }; %>
