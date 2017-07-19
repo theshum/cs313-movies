@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'CS416 - Adam Shumway' });
 });
 
-
+/* top movie route */
 router.get('/top', function(req, res, next){
   console.log('inside /test route');
   var data;
@@ -28,7 +28,7 @@ router.get('/top', function(req, res, next){
     searchRequest(options, res, runSearch)
   });
 
-
+/* search route */
 router.get('/search', function(req, res, next){
   console.log('inside /search route');
 
@@ -53,11 +53,13 @@ router.get('/search', function(req, res, next){
 
 });
 
+/* render page when everything has returned */
 function runSearch(res) {
     //console.log('runSearch callback complete');
     res.render('top', { title: 'Movies' });
 }
 
+/* Main query out to the moviedb */
 function searchRequest(options, res, callback) {
   request(options, function (error, response, body) {
       if (error) throw new Error(error);
@@ -78,7 +80,7 @@ function searchRequest(options, res, callback) {
             //console.log("data " + data);
             //console.log("labels " + labels);
           }); 
-        
+        /* building dhart data information */
         chartData = {
                       type: 'horizontalBar',
                       data: {

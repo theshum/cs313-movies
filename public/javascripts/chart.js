@@ -1,4 +1,4 @@
-
+/* chart info, unfortunately it's static for now */
 var ctx = document.getElementById("myChart").getContext('2d');
 console.log("outputting ctx: " + ctx); 
 
