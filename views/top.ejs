@@ -22,17 +22,19 @@
             <h2>Search did not return any results, please try again</h2>
           <% } else {
             console.log("so we made it to the else"); %>
+            <h3>Search Results</h3>
             <ul>
             <% searchResults.results.forEach(function(item) { %>
-              <li> <%= item.title %> - <span style:"color:red"> <%= item.vote_count %> </span></li>
+              <li> <%= item.title %> - <span style="color:red"> <%= item.vote_count %> (votes)</span></li>
             <% }); %>
             </ul>
           <% }; %>
         </div>
         <div class="col-md-8">
-        <!-- place for the chart -->
-        <canvas id="myChart" ></canvas>
-        <% include ./partials/chart.ejs %>
+          <!-- place for the chart -->
+          <canvas id="myChart" ></canvas>
+          <script type="text/javascript" src="/javascripts/chart.js"></script>
+        </div>
       </div>
     </div>
   </body>

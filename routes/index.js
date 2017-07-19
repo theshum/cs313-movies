@@ -3,11 +3,13 @@ var router = express.Router();
 var request = require("request");
 var bodyParser = require('body-parser');
 var url = require('url');
+var Chart = require('chart.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
 
 router.get('/top', function(req, res, next){
   console.log('inside /test route');
@@ -73,11 +75,48 @@ function searchRequest(options, res, callback) {
           searchResults.results.forEach(function(item){
             data.push(item.vote_count);
             labels.push(item.title);
+            //console.log("data " + data);
+            //console.log("labels " + labels);
           }); 
-          console.log("data " + data[0]);
-          console.log("labels " + labels[0]);
+        
+        chartData = {
+                      type: 'horizontalBar',
+                      data: {
+                          labels: labels,
+                          datasets: [{
+                              label: '# of Votes',
+                              data: data,
+                              backgroundColor: [
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(54, 162, 235, 0.2)',
+                                  'rgba(255, 206, 86, 0.2)',
+                                  'rgba(75, 192, 192, 0.2)',
+                                  'rgba(153, 102, 255, 0.2)',
+                                  'rgba(255, 159, 64, 0.2)'
+                              ],
+                              borderColor: [
+                                  'rgba(255,99,132,1)',
+                                  'rgba(54, 162, 235, 1)',
+                                  'rgba(255, 206, 86, 1)',
+                                  'rgba(75, 192, 192, 1)',
+                                  'rgba(153, 102, 255, 1)',
+                                  'rgba(255, 159, 64, 1)'
+                              ],
+                              borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          scales: {
+                              yAxes: [{
+                                  ticks: {
+                                      beginAtZero: true
+                                  }
+                              }]
+                          }
+                      }
+                  }
       }
-
+      //console.log("index.js chartData: " + chartData);
       //console.log(body);
       //console.log('search request complete');
       //console.log('searchResults: ' + JSON.stringify(searchResults));

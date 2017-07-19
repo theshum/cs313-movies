@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var url = require('url');
 
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -31,6 +32,7 @@ app.use('/users', users);
 app.locals.searchResults;
 app.locals.data = [];
 app.locals.labels = [];
+app.locals.chartData;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
