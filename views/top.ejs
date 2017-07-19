@@ -7,7 +7,7 @@
     <% include ./partials/nav.ejs %>
     <div>
       <h1><%= title %></h1>
-      <p>Welcome to <%= title %></p>
+      <p>Search for your favorite movie or check out the top 20</p>
       <hr>
     </div>
     <div>
@@ -19,7 +19,7 @@
         <div class="col-md-4">
           <% if(searchResults === "empty") { 
             console.log("we have empty results"); %>
-            <h2>Search did not return any results, please try again</h2>
+            <h4>Search did not return any results</h4>
           <% } else {
             console.log("so we made it to the else"); %>
             <h3>Search Results</h3>
